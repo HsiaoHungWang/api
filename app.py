@@ -9,7 +9,7 @@ from resources.users import User, Users
 from resources.address import DistinctCities, SiteIdsByCity, RoadsBySiteId
 from resources.spots import Spots,SpotCategoryStats,SpotsByDistrict
 from resources.categories import Categories
-from resources.members import Members, Member
+from resources.members import Members, Member, NameCheck
 from resources.image import Image, Base64Image
 
 
@@ -43,6 +43,7 @@ api.add_resource(Members, '/api/members')
 api.add_resource(Member, '/api/members/<int:id>')
 api.add_resource(Image, '/api/image')
 api.add_resource(Base64Image, '/api/image/base64')
+api.add_resource(NameCheck, '/api/members/<string:name>')
 
 if __name__=='__main__':
     app.run()

@@ -12,7 +12,7 @@ UPLOAD_FOLDER = os.path.join('static', 'images')
 
 class Image(Resource):
     def get(self):
-        image_path = os.path.join('static', 'images', 'dog1.jpg')  # 圖片路徑
+        image_path = os.path.join('static', 'avatars', 'dog1.jpg')  # 圖片路徑
         return send_file(image_path, mimetype='image/jpeg')
 
         # return {'message': '讀取圖片'}
@@ -26,12 +26,14 @@ class Image(Resource):
             return {'message': 'No selected file'}, 400
 
         filename = secure_filename(image.filename)
+
         filepath = os.path.join(UPLOAD_FOLDER, filename)
+        # C:\Share\AIPE_Ajax\api\static\dog.jpg
         image.save(filepath)
 
         return {
             'message': 'Image uploaded successfully',
-            'url': f'/static/uploads/{filename}'
+            'url': f'/static/images/{filename}'
         }
 
 class Base64Image(Resource):

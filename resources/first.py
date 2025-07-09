@@ -4,7 +4,7 @@ import time
 
 class First(Resource):
     def get(self): 
-        # time.sleep(5)
+        time.sleep(5)
         response = make_response('Hello, Ajax!!')
         response.headers['Content-Type'] = 'text/plain'
         return response

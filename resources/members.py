@@ -86,6 +86,7 @@ class Member(Resource):
         return {"message": "Member updated"}, 200
 
     def delete(self, id):    
+        
         stmt = delete(members_table).where(members_table.c.MemberId == id)
 
         with engine.connect() as conn:
@@ -93,3 +94,13 @@ class Member(Resource):
             conn.commit()
 
         return {"message": "Member deleted"}, 200
+    
+class NameCheck(Resource):
+    def get(self, name):  
+        stmt = select(members_table.c.MemberId).where(members_table.c.Name == name)
+
+        with engine.connect() as conn:
+            result = conn.execute(stmt).fetchone()
+            exists = result is not None
+
+        return {'check': exists}
